@@ -1,0 +1,5 @@
+2021-01-04 15:58:12 INFO  TcTest:46 - Founded device name is Samsung Galaxy S20
+2021-01-04 16:00:11 INFO  TcTest:83 - TWELVE MONTHS: 1630.47
+2021-01-04 16:00:11 INFO  TcTest:84 - NINE MONTHS: 2104.81
+2021-01-04 16:00:11 INFO  TcTest:85 - SIX MONTHS: 3055.66
+2021-01-04 16:00:16 INFO  TcTest:46 - Founded device name is Samsung Galaxy S20
