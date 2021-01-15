@@ -1,42 +1,23 @@
 package tests;
 
-import org.apache.log4j.PropertyConfigurator;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import base.TestBase;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.PasajHomePage;
 import pages.SearchPage;
-import org.apache.log4j.Logger;
-
-import java.util.concurrent.TimeUnit;
 
 
-public class TcTest {
+public class TcTest extends TestBase {
 
-    WebDriver driver;
-    private static final Logger log  = Logger.getLogger(TcTest.class.getName());
-
-    @BeforeSuite
-    public void settings() {
-        PropertyConfigurator.configure("src/test/java/resources/log4j.properties");
-        System.setProperty("webdriver.chrome.driver", "Driver/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    }
 
     @Test
     public void searchTest() {
 
-        driver.get("https://www.turkcell.com.tr/");
-        driver.manage().deleteAllCookies();
-
         HomePage home = new HomePage(driver);
         SearchPage searchPage = new SearchPage(driver);
 
-        String searchText = "Samsung Galaxy S20";
+        final String searchText = "Samsung Galaxy S20";
 
         home.clickSearchButton();
         home.clickAndSetTextToSearch(searchText);
@@ -51,9 +32,6 @@ public class TcTest {
     @Test
     public void OpenPasajAndCheckBasket() {
 
-        driver.get("https://www.turkcell.com.tr/");
-        driver.manage().deleteAllCookies();
-
         HomePage homePage = new HomePage(driver);
         PasajHomePage pasajHomePage = new PasajHomePage(driver);
 
@@ -65,9 +43,6 @@ public class TcTest {
 
     @Test
     public void OpenPasajAndCheckInstallments() {
-
-        driver.get("https://www.turkcell.com.tr/");
-        driver.manage().deleteAllCookies();
 
         HomePage homePage = new HomePage(driver);
         PasajHomePage pasajHomePage = new PasajHomePage(driver);
@@ -89,9 +64,6 @@ public class TcTest {
 
     }
 
-    @AfterSuite
-    public void quitDriver() {
-        driver.quit();
-    }
+
 
 }

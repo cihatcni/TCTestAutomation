@@ -19,7 +19,7 @@ public class PasajHomePage {
     By basketButton = By.xpath("/html/body/header/div[1]/div[2]/a");
     By emptyBasketLabel = By.xpath("//*[@id=\"basket\"]/div/div/form/div[1]/div/div/h3");
     By macbookHeader = By.xpath("/html/body/footer/div[1]/div/nav/div/div[3]/ul/li[11]/a");
-    By macbookLabel = By.xpath("//*[@id=\"all-devices-section\"]/div[26]/a/div[1]/span");
+    By macbookLabel = By.xpath("//*[@id=\"all-devices-section\"]/div[27]/a/div[1]/span");
     By installment = By.xpath("//*[@id=\"product-detail\"]/div[1]/div/div/div[2]/form/div[2]/label/div[1]/span[2]/span");
     By sixMonths = By.xpath("//*[@id=\"product-detail\"]/div[1]/div/div/div[2]/form/div[2]/label/div[2]/a[1]");
     By nineMonths = By.xpath("//*[@id=\"product-detail\"]/div[1]/div/div/div[2]/form/div[2]/label/div[2]/a[2]");
