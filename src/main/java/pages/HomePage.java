@@ -1,36 +1,37 @@
 package pages;
 
+import base.PageBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class HomePage {
-
-    WebDriver driver;
-
-    public HomePage(WebDriver driver) {
-        this.driver=driver;
-    }
+public class HomePage extends PageBase {
 
     By searchButton = By.xpath("/html/body/header/div[2]/div/div[2]/div[2]/div/a[1]");
     By searchText = By.xpath("//*[@id=\"header-search\"]/div[1]/div/div/form/div/input");
     By searchButtonInBar = By.xpath("//*[@id=\"header-search\"]/div[1]/div/div/form/div/button/i");
     By pasajButton = By.xpath("/html/body/header/div[2]/div/nav/a[1]");
 
+    public HomePage(WebDriver driver) {
+        init(driver);
+    }
+
     public void clickSearchButton() {
-        driver.findElement(searchButton).click();
+        clickElement(searchButton);
     }
 
     public void clickAndSetTextToSearch(String text) {
-        driver.findElement(searchText).click();
-        driver.findElement(searchText).sendKeys(text);
+        clickElement(searchText);
+        sendTextToElement(searchText,text);
     }
 
-    public void clickSearchButtonInBar() {
-        driver.findElement(searchButtonInBar).click();
+    public SearchPage clickSearchButtonInBar() {
+        clickElement(searchButtonInBar);
+        return new SearchPage(driver);
     }
 
-    public void clickPasaj() {
-        driver.findElement(pasajButton).click();
+    public PasajHomePage clickPasaj() {
+        clickElement(pasajButton);
+        return new PasajHomePage(driver);
     }
 
 }

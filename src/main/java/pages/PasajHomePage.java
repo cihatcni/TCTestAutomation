@@ -1,84 +1,64 @@
 package pages;
 
+import base.PageBase;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class PasajHomePage {
-
-    WebDriver driver;
-
-    public PasajHomePage(WebDriver driver) {
-        this.driver=driver;
-    }
+public class PasajHomePage extends PageBase {
 
     By basketButton = By.xpath("/html/body/header/div[1]/div[2]/a");
     By emptyBasketLabel = By.xpath("//*[@id=\"basket\"]/div/div/form/div[1]/div/div/h3");
     By macbookHeader = By.xpath("/html/body/footer/div[1]/div/nav/div/div[3]/ul/li[11]/a");
-    By macbookLabel = By.xpath("//*[@id=\"all-devices-section\"]/div[27]/a/div[1]/span");
+    By macbookLabel = By.xpath("//*[@id=\"all-devices-section\"]/div[29]/a/div[1]/span");
     By installment = By.xpath("//*[@id=\"product-detail\"]/div[1]/div/div/div[2]/form/div[2]/label/div[1]/span[2]/span");
     By sixMonths = By.xpath("//*[@id=\"product-detail\"]/div[1]/div/div/div[2]/form/div[2]/label/div[2]/a[1]");
     By nineMonths = By.xpath("//*[@id=\"product-detail\"]/div[1]/div/div/div[2]/form/div[2]/label/div[2]/a[2]");
 
+    public PasajHomePage(WebDriver driver) {
+        init(driver);
+    }
+
     public void clickBasket() {
-        driver.findElement(basketButton).click();
+        clickElement(basketButton);
     }
 
     public boolean isBasketEmpty(){
-        try {
-            driver.findElement(emptyBasketLabel);
-        }
-        catch (NoSuchElementException exception) {
-            return false;
-        }
-        return true;
+        return isElementDisplayed(emptyBasketLabel);
     }
 
     public void moveAndClickMacbookHeader() {
         moveToElement(macbookHeader);
-        driver.findElement(macbookHeader).click();
+        clickElement(macbookHeader);
     }
 
     public void clickMacbook() {
-        WebDriverWait wait = new WebDriverWait(driver, 20);
-        wait.until((ExpectedCondition<Boolean>) d -> driver.findElement(macbookLabel).getText().contains("Apple MacBook Pro Touch Bar"));
+        String str = "Apple MacBook Pro Touch Bar";
+        waitUntilElementDisplayedContainsString(macbookLabel, str);
         moveToElement(macbookLabel);
-        driver.findElement(macbookLabel).click();
+        clickElement(macbookLabel);
     }
 
     public float getInstallmentValue() {
-        WebElement element = driver.findElement(installment);
-        String text = element.getText();
-        text = text.replace(".", "");
-        text = text.replace(",", ".");
-        return Float.parseFloat(text);
+        String text = getElementText(installment);
+        return parsePriceString(text);
     }
 
     public float getSixMonthsInstallmentValue() {
-        WebElement element = driver.findElement(sixMonths);
-        String text = element.getAttribute("data-price");
-        text = text.replace(".", "");
-        text = text.replace(",", ".");
-        return Float.parseFloat(text);
+        String text = getNonVisibleElementAttributeValue(sixMonths, "data-price");
+        return parsePriceString(text);
     }
 
     public float getNineMonthsInstallmentValue() {
-        WebElement element = driver.findElement(nineMonths);
-        String text = element.getAttribute("data-price");
+        String text = getNonVisibleElementAttributeValue(nineMonths, "data-price");
+        return parsePriceString(text);
+    }
+
+    private float parsePriceString(String text) {
         text = text.replace(".", "");
         text = text.replace(",", ".");
         return Float.parseFloat(text);
     }
 
-    private void moveToElement(By by) {
-        WebElement element = driver.findElement(by);
-        Actions actions = new Actions(driver);
-        actions.moveToElement(element);
-        actions.perform();
-    }
+
 
 }

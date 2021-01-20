@@ -15,16 +15,15 @@ public class TcTest extends TestBase {
     public void searchTest() {
 
         HomePage home = new HomePage(driver);
-        SearchPage searchPage = new SearchPage(driver);
 
         final String searchText = "Samsung Galaxy S20";
 
         home.clickSearchButton();
         home.clickAndSetTextToSearch(searchText);
-        home.clickSearchButtonInBar();
+        SearchPage searchPage = home.clickSearchButtonInBar();
         searchPage.clickDevices();
         String deviceName = searchPage.getFirstDeviceName();
-        log.info("Founded device name is " + deviceName);
+        log.info("The name of the device found is " + deviceName);
         Assert.assertEquals(deviceName,searchText);
 
     }
@@ -33,9 +32,8 @@ public class TcTest extends TestBase {
     public void OpenPasajAndCheckBasket() {
 
         HomePage homePage = new HomePage(driver);
-        PasajHomePage pasajHomePage = new PasajHomePage(driver);
 
-        homePage.clickPasaj();
+        PasajHomePage pasajHomePage = homePage.clickPasaj();
         pasajHomePage.clickBasket();
         Assert.assertTrue(pasajHomePage.isBasketEmpty());
 
@@ -45,22 +43,16 @@ public class TcTest extends TestBase {
     public void OpenPasajAndCheckInstallments() {
 
         HomePage homePage = new HomePage(driver);
-        PasajHomePage pasajHomePage = new PasajHomePage(driver);
 
-        homePage.clickPasaj();
+        PasajHomePage pasajHomePage =homePage.clickPasaj();
         pasajHomePage.moveAndClickMacbookHeader();
         pasajHomePage.clickMacbook();
 
         float result = pasajHomePage.getInstallmentValue();
-        float sixMonths = pasajHomePage.getSixMonthsInstallmentValue();
-        float nineMonths = pasajHomePage.getNineMonthsInstallmentValue();
 
-        log.info("TWELVE MONTHS: " + result);
-        log.info("NINE MONTHS: " + nineMonths);
-        log.info("SIX MONTHS: " + sixMonths);
+        log.info("Price : " + result);
 
-        Assert.assertTrue(result > 1000);
-        Assert.assertTrue(sixMonths > nineMonths);
+        Assert.assertTrue(result > 10000);
 
     }
 
