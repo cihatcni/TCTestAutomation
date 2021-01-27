@@ -14,17 +14,17 @@ public class TcTest extends TestBase {
     @Test
     public void searchTest() {
 
-        HomePage home = new HomePage(driver);
-
         final String searchText = "Samsung Galaxy S20";
 
+        HomePage home = new HomePage(driver);
         home.clickSearchButton();
         home.clickAndSetTextToSearch(searchText);
         SearchPage searchPage = home.clickSearchButtonInBar();
+
         searchPage.clickDevices();
         String deviceName = searchPage.getFirstDeviceName();
         log.info("The name of the device found is " + deviceName);
-        Assert.assertEquals(deviceName,searchText);
+        searchPage.checkFirstDeviceName(searchText);
 
     }
 
@@ -32,7 +32,6 @@ public class TcTest extends TestBase {
     public void OpenPasajAndCheckBasket() {
 
         HomePage homePage = new HomePage(driver);
-
         PasajHomePage pasajHomePage = homePage.clickPasaj();
         pasajHomePage.clickBasket();
         Assert.assertTrue(pasajHomePage.isBasketEmpty());
@@ -42,14 +41,14 @@ public class TcTest extends TestBase {
     @Test
     public void OpenPasajAndCheckInstallments() {
 
-        HomePage homePage = new HomePage(driver);
+        final String computerName = "Apple MacBook Pro Touch Bar";
 
+        HomePage homePage = new HomePage(driver);
         PasajHomePage pasajHomePage =homePage.clickPasaj();
         pasajHomePage.moveAndClickMacbookHeader();
-        pasajHomePage.clickMacbook();
+        pasajHomePage.clickComputerNameContainsText(computerName);
 
         float result = pasajHomePage.getInstallmentValue();
-
         log.info("Price : " + result);
 
         Assert.assertTrue(result > 10000);

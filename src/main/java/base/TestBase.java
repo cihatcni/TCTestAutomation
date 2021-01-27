@@ -16,7 +16,7 @@ public class TestBase {
     @BeforeSuite
     public void settings() {
         PropertyConfigurator.configure("src/test/java/resources/log4j.properties");
-        System.setProperty("webdriver.chrome.driver", "Driver/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src/test/java/resources/chromedriver.exe");
     }
 
     @BeforeMethod

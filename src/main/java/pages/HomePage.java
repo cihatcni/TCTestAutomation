@@ -16,21 +16,21 @@ public class HomePage extends PageBase {
     }
 
     public void clickSearchButton() {
-        clickElement(searchButton);
+        actions.clickElement(searchButton);
     }
 
     public void clickAndSetTextToSearch(String text) {
-        clickElement(searchText);
-        sendTextToElement(searchText,text);
+        actions.clickElement(searchText);
+        actions.sendTextToElement(searchText,text);
     }
 
     public SearchPage clickSearchButtonInBar() {
-        clickElement(searchButtonInBar);
+        actions.clickElement(searchButtonInBar);
         return new SearchPage(driver);
     }
 
     public PasajHomePage clickPasaj() {
-        clickElement(pasajButton);
+        actions.clickElement(pasajButton);
         return new PasajHomePage(driver);
     }
 

@@ -20,3 +20,6 @@
 2021-01-20 14:40:27 INFO  TestBase:53 - Price : 20999.0
 2021-01-20 14:46:58 INFO  TestBase:26 - The name of the device found is Samsung Galaxy S20
 2021-01-20 14:47:33 INFO  TestBase:53 - Price : 20999.0
+2021-01-27 15:09:09 INFO  TestBase:26 - The name of the device found is Samsung Galaxy S20
+2021-01-27 15:13:44 INFO  TestBase:53 - Price : 20999.0
+2021-01-27 15:22:13 INFO  TestBase:26 - The name of the device found is Samsung Galaxy S20

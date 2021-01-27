@@ -14,11 +14,15 @@ public class SearchPage extends PageBase {
     }
 
     public void clickDevices() {
-        clickElement(devicesTab);
+        actions.clickElement(devicesTab);
     }
 
     public String getFirstDeviceName() {
-        return getElementText(firstDevice);
+        return actions.getElementText(firstDevice);
+    }
+
+    public void checkFirstDeviceName(String searchText) {
+        validations.verifyElementTextEqualsText(firstDevice,searchText);
     }
 
 
